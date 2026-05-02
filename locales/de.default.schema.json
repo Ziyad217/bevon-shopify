@@ -662,7 +662,7 @@
       }
     },
     "custom-liquid": {
-      "name": "Benutzerdefiniertes Liquid",
+      "name": "Custom Liquid",
       "settings": {
         "custom_liquid": {
           "label": "Liquid-Code",
@@ -670,7 +670,7 @@
         }
       },
       "presets": {
-        "name": "Benutzerdefiniertes Liquid"
+        "name": "Custom Liquid"
       }
     },
     "featured-blog": {
@@ -1529,7 +1529,7 @@
       }
     },
     "main-list-collections": {
-      "name": "Listenseite für Kollektionen",
+      "name": "Kollektions-Liste",
       "settings": {
         "title": {
           "label": "Überschrift",
@@ -1955,6 +1955,10 @@
             },
             "pairing_3": {
               "label": "Kombination 3"
+            },
+            "content": {
+              "label": "Inhalt",
+              "info": "Wähle ein Icon oder lade ein eigenes Bild hoch"
             }
           }
         },
@@ -2627,7 +2631,7 @@
       }
     },
     "email-signup-banner": {
-      "name": "Banner für E-Mail-Anmeldung",
+      "name": "E-Mail-Anmeldung",
       "settings": {
         "paragraph": {
           "content": "Registrierungen hinzufügen [Kundenprofile](https://help.shopify.com/manual/customers/manage-customers)"
@@ -2759,7 +2763,7 @@
         }
       },
       "presets": {
-        "name": "Banner für E-Mail-Anmeldung"
+        "name": "E-Mail-Anmeldung"
       }
     },
     "slideshow": {

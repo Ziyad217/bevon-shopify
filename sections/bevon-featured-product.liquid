@@ -13,7 +13,7 @@
         {{ section.settings.fallback_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.heading }}
       {% else %}
         <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;">
-          <span>{{ 'general.placeholder.image' | t | default: 'Produktbild' }}</span>
+          <span>Produktbild</span>
         </div>
       {% endif %}
     </div>

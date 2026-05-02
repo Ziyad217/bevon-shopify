@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": { "padding_top": 40, "padding_bottom": 40 }
+    },
+    "ticker": {
+      "type": "bevon-text-ticker",
+      "blocks": {
+        "tk1": { "type": "ticker_item", "settings": { "text": "Designed in Deutschland" } },
+        "tk2": { "type": "ticker_item", "settings": { "text": "Limitierte Drops" } },
+        "tk3": { "type": "ticker_item", "settings": { "text": "Premium Qualität" } },
+        "tk4": { "type": "ticker_item", "settings": { "text": "Kein Restock" } }
+      },
+      "block_order": ["tk1", "tk2", "tk3", "tk4"],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "h": { "type": "heading", "settings": { "heading": "Bleib up to date", "heading_size": "h2" } },
+        "p": { "type": "paragraph", "settings": { "text": "<p>Sei der erste, der von neuen Drops erfährt.</p>" } },
+        "f": { "type": "email_form" }
+      },
+      "block_order": ["h", "p", "f"],
+      "settings": { "color_scheme": "scheme-2", "full_width": true }
+    }
+  },
+  "order": ["main", "ticker", "newsletter"]
+}
