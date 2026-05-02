@@ -1,0 +1,253 @@
+/* BEVON - Custom Streetwear Styles */
+
+:root {
+  --bevon-black: #0A0A0A;
+  --bevon-dark: #111111;
+  --bevon-white: #FFFFFF;
+  --bevon-gold: #FFCC00;
+  --bevon-red: #CC0000;
+  --bevon-gray: #1A1A1A;
+  --bevon-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== GLOBAL ===== */
+body {
+  background-color: var(--bevon-black);
+  color: var(--bevon-white);
+}
+
+/* Letter-spacing für Headings - Streetwear-Feeling */
+h1, h2, h3, h4, .banner__heading, .title {
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announcement-bar {
+  background-color: var(--bevon-gold) !important;
+  color: var(--bevon-black) !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  padding: 10px 0;
+}
+
+.announcement-bar__message {
+  color: var(--bevon-black) !important;
+}
+
+/* ===== HEADER / NAVIGATION ===== */
+.header {
+  background-color: var(--bevon-black) !important;
+  border-bottom: 1px solid var(--bevon-border);
+}
+
+.header__heading-link,
+.header__menu-item,
+.header-wrapper .header__icon {
+  color: var(--bevon-white) !important;
+}
+
+.header__heading-link:hover,
+.header__menu-item:hover {
+  color: var(--bevon-gold) !important;
+}
+
+/* ===== HERO BANNER ===== */
+.banner {
+  position: relative;
+}
+
+.banner__content {
+  z-index: 2;
+}
+
+/* Dark overlay on hero */
+.banner::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  ) !important;
+}
+
+.banner__heading {
+  font-size: clamp(3.5rem, 10vw, 9rem) !important;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.8);
+}
+
+/* Gold accent line under hero heading */
+.banner__heading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--bevon-gold);
+  margin-top: 16px;
+}
+
+.banner__text p {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ===== BUTTONS ===== */
+.button--primary {
+  background-color: var(--bevon-white) !important;
+  color: var(--bevon-black) !important;
+  border: 2px solid var(--bevon-white) !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.button--primary:hover {
+  background-color: var(--bevon-gold) !important;
+  border-color: var(--bevon-gold) !important;
+  color: var(--bevon-black) !important;
+}
+
+.button--secondary {
+  background-color: transparent !important;
+  color: var(--bevon-white) !important;
+  border: 2px solid var(--bevon-white) !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button--secondary:hover {
+  background-color: var(--bevon-white) !important;
+  color: var(--bevon-black) !important;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.card-wrapper .card {
+  background-color: var(--bevon-dark) !important;
+  border: 1px solid var(--bevon-border) !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.card-wrapper .card:hover {
+  border-color: var(--bevon-gold) !important;
+  transform: translateY(-3px);
+}
+
+.card__heading {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem !important;
+}
+
+.price {
+  color: var(--bevon-white) !important;
+}
+
+.price--sale .price__regular {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+.price--sale .price__sale {
+  color: var(--bevon-gold) !important;
+}
+
+/* ===== SECTION HEADINGS ===== */
+.section-heading,
+.collection-hero__title,
+.featured-collection .title {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Gold accent on section titles */
+.collection__title::after,
+.featured-collection .title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--bevon-gold);
+  margin-top: 8px;
+}
+
+/* ===== COLLECTION PAGE ===== */
+.collection-hero {
+  background-color: var(--bevon-black) !important;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background-color: var(--bevon-black) !important;
+  border-top: 1px solid var(--bevon-border);
+}
+
+.footer__content-top,
+.footer__content-bottom {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--bevon-gold) !important;
+}
+
+/* ===== CART ===== */
+.cart-drawer {
+  background-color: var(--bevon-dark) !important;
+  border-left: 1px solid var(--bevon-border);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bevon-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bevon-gold);
+}
+
+/* ===== WM 2026 BADGE - Gold/Rot Akzent ===== */
+.badge--sale {
+  background-color: var(--bevon-red) !important;
+  color: var(--bevon-white) !important;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* ===== RICH TEXT SECTIONS ===== */
+.rich-text__heading {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* ===== INPUTS & FORMS ===== */
+.field__input,
+.select__select {
+  background-color: var(--bevon-gray) !important;
+  border-color: var(--bevon-border) !important;
+  color: var(--bevon-white) !important;
+}
+
+.field__input:focus,
+.select__select:focus {
+  border-color: var(--bevon-gold) !important;
+  outline: none;
+}
