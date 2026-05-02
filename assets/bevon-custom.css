@@ -1,253 +1,822 @@
-/* BEVON - Custom Streetwear Styles */
+/* =====================================================================
+   BEVON — Premium Football Streetwear (WM 2026)
+   Design System: Light, Clean, Sporty
+   ===================================================================== */
 
+/* ---------- Design Tokens ---------- */
 :root {
-  --bevon-black: #0A0A0A;
-  --bevon-dark: #111111;
-  --bevon-white: #FFFFFF;
-  --bevon-gold: #FFCC00;
-  --bevon-red: #CC0000;
-  --bevon-gray: #1A1A1A;
-  --bevon-border: rgba(255, 255, 255, 0.08);
+  /* Brand colors */
+  --bevon-bg:          #FFFFFF;
+  --bevon-surface:     #F5F5F5;
+  --bevon-surface-2:   #FAFAFA;
+  --bevon-fg:          #1A1A1A;
+  --bevon-fg-muted:    #5A5A5A;
+  --bevon-border:      #E5E5E5;
+  --bevon-accent:      #0066CC;       /* Sporty blue */
+  --bevon-accent-hover:#0052A3;
+  --bevon-success:     #00B341;
+  --bevon-danger:      #CC0000;
+  --bevon-de-gold:     #FFCE00;       /* For DE-flag accents in badges */
+  --bevon-de-red:      #DD0000;
+  --bevon-de-black:    #000000;
+
+  /* Typography */
+  --bevon-font-heading: 'Inter', 'Montserrat', system-ui, -apple-system, sans-serif;
+  --bevon-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Radii */
+  --bevon-radius-sm: 4px;
+  --bevon-radius-md: 8px;
+  --bevon-radius-lg: 16px;
+  --bevon-radius-pill: 999px;
+
+  /* Shadows */
+  --bevon-shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --bevon-shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --bevon-shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+
+  /* Layout */
+  --bevon-max-width: 1280px;
+  --bevon-section-pad-y: 64px;
+  --bevon-section-pad-x: 24px;
 }
 
-/* ===== GLOBAL ===== */
+/* ---------- Global resets / global type ---------- */
 body {
-  background-color: var(--bevon-black);
-  color: var(--bevon-white);
+  background-color: var(--bevon-bg);
+  color: var(--bevon-fg);
+  font-family: var(--bevon-font-body);
 }
 
-/* Letter-spacing für Headings - Streetwear-Feeling */
-h1, h2, h3, h4, .banner__heading, .title {
-  letter-spacing: -0.02em;
+h1, h2, h3, h4, h5, h6,
+.banner__heading, .title, .h0, .h1, .h2, .h3, .h4 {
+  font-family: var(--bevon-font-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
-  line-height: 0.95;
+  color: var(--bevon-fg);
+  line-height: 1.05;
 }
 
-/* ===== ANNOUNCEMENT BAR ===== */
+a { color: var(--bevon-accent); }
+a:hover { color: var(--bevon-accent-hover); }
+
+/* ---------- Announcement bar ---------- */
 .announcement-bar {
-  background-color: var(--bevon-gold) !important;
-  color: var(--bevon-black) !important;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  background-color: var(--bevon-fg) !important;
+  color: var(--bevon-bg) !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 1.1rem;
-  padding: 10px 0;
+  font-size: 0.8rem;
+  padding: 8px 0;
 }
+.announcement-bar__message { color: var(--bevon-bg) !important; }
 
-.announcement-bar__message {
-  color: var(--bevon-black) !important;
-}
-
-/* ===== HEADER / NAVIGATION ===== */
+/* ---------- Header ---------- */
 .header {
-  background-color: var(--bevon-black) !important;
+  background-color: var(--bevon-bg) !important;
   border-bottom: 1px solid var(--bevon-border);
 }
-
 .header__heading-link,
 .header__menu-item,
-.header-wrapper .header__icon {
-  color: var(--bevon-white) !important;
-}
-
+.header-wrapper .header__icon { color: var(--bevon-fg) !important; }
 .header__heading-link:hover,
-.header__menu-item:hover {
-  color: var(--bevon-gold) !important;
-}
+.header__menu-item:hover { color: var(--bevon-accent) !important; }
 
-/* ===== HERO BANNER ===== */
-.banner {
-  position: relative;
-}
-
-.banner__content {
-  z-index: 2;
-}
-
-/* Dark overlay on hero */
-.banner::after {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  ) !important;
-}
-
-.banner__heading {
-  font-size: clamp(3.5rem, 10vw, 9rem) !important;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  line-height: 0.9;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.8);
-}
-
-/* Gold accent line under hero heading */
-.banner__heading::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--bevon-gold);
-  margin-top: 16px;
-}
-
-.banner__text p {
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
-
-/* ===== BUTTONS ===== */
+/* ---------- Buttons ---------- */
+.button,
 .button--primary {
-  background-color: var(--bevon-white) !important;
-  color: var(--bevon-black) !important;
-  border: 2px solid var(--bevon-white) !important;
-  letter-spacing: 0.1em;
+  background-color: var(--bevon-accent) !important;
+  color: var(--bevon-bg) !important;
+  border: 2px solid var(--bevon-accent) !important;
+  border-radius: var(--bevon-radius-md) !important;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
 }
-
+.button:hover,
 .button--primary:hover {
-  background-color: var(--bevon-gold) !important;
-  border-color: var(--bevon-gold) !important;
-  color: var(--bevon-black) !important;
+  background-color: var(--bevon-accent-hover) !important;
+  border-color: var(--bevon-accent-hover) !important;
+  transform: translateY(-1px);
 }
 
 .button--secondary {
   background-color: transparent !important;
-  color: var(--bevon-white) !important;
-  border: 2px solid var(--bevon-white) !important;
-  letter-spacing: 0.1em;
+  color: var(--bevon-fg) !important;
+  border: 2px solid var(--bevon-fg) !important;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 .button--secondary:hover {
-  background-color: var(--bevon-white) !important;
-  color: var(--bevon-black) !important;
+  background-color: var(--bevon-fg) !important;
+  color: var(--bevon-bg) !important;
 }
 
-/* ===== PRODUCT CARDS ===== */
+/* ---------- Product cards ---------- */
 .card-wrapper .card {
-  background-color: var(--bevon-dark) !important;
+  background-color: var(--bevon-bg) !important;
   border: 1px solid var(--bevon-border) !important;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: var(--bevon-radius-md) !important;
+  box-shadow: var(--bevon-shadow-sm);
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
 }
-
 .card-wrapper .card:hover {
-  border-color: var(--bevon-gold) !important;
-  transform: translateY(-3px);
+  border-color: var(--bevon-accent) !important;
+  box-shadow: var(--bevon-shadow-lg);
+  transform: translateY(-4px);
 }
-
 .card__heading {
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   font-size: 0.95rem !important;
+  color: var(--bevon-fg) !important;
 }
+.price { color: var(--bevon-fg) !important; font-weight: 700; }
+.price--sale .price__regular { color: var(--bevon-fg-muted) !important; }
+.price--sale .price__sale { color: var(--bevon-danger) !important; }
 
-.price {
-  color: var(--bevon-white) !important;
-}
-
-.price--sale .price__regular {
-  color: rgba(255,255,255,0.4) !important;
-}
-
-.price--sale .price__sale {
-  color: var(--bevon-gold) !important;
-}
-
-/* ===== SECTION HEADINGS ===== */
+/* ---------- Section headings ---------- */
 .section-heading,
 .collection-hero__title,
 .featured-collection .title {
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-/* Gold accent on section titles */
+/* Blue accent bar under collection titles */
 .collection__title::after,
 .featured-collection .title::after {
   content: '';
   display: block;
-  width: 40px;
-  height: 2px;
-  background: var(--bevon-gold);
-  margin-top: 8px;
+  width: 48px;
+  height: 3px;
+  background: var(--bevon-accent);
+  margin-top: 12px;
+  border-radius: var(--bevon-radius-pill);
 }
 
-/* ===== COLLECTION PAGE ===== */
-.collection-hero {
-  background-color: var(--bevon-black) !important;
-}
-
-/* ===== FOOTER ===== */
+/* ---------- Footer ---------- */
 .footer {
-  background-color: var(--bevon-black) !important;
+  background-color: var(--bevon-surface) !important;
   border-top: 1px solid var(--bevon-border);
+  color: var(--bevon-fg-muted);
 }
-
-.footer__content-top,
-.footer__content-bottom {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .footer a {
-  color: rgba(255, 255, 255, 0.7) !important;
-  transition: color 0.2s;
+  color: var(--bevon-fg-muted) !important;
+  transition: color .2s;
 }
+.footer a:hover { color: var(--bevon-accent) !important; }
 
-.footer a:hover {
-  color: var(--bevon-gold) !important;
-}
-
-/* ===== CART ===== */
+/* ---------- Cart drawer ---------- */
 .cart-drawer {
-  background-color: var(--bevon-dark) !important;
+  background-color: var(--bevon-bg) !important;
   border-left: 1px solid var(--bevon-border);
 }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bevon-black);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--bevon-gold);
-}
-
-/* ===== WM 2026 BADGE - Gold/Rot Akzent ===== */
-.badge--sale {
-  background-color: var(--bevon-red) !important;
-  color: var(--bevon-white) !important;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-}
-
-/* ===== RICH TEXT SECTIONS ===== */
-.rich-text__heading {
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-}
-
-/* ===== INPUTS & FORMS ===== */
+/* ---------- Inputs / Forms ---------- */
 .field__input,
 .select__select {
-  background-color: var(--bevon-gray) !important;
-  border-color: var(--bevon-border) !important;
-  color: var(--bevon-white) !important;
+  background-color: var(--bevon-bg) !important;
+  border: 1px solid var(--bevon-border) !important;
+  color: var(--bevon-fg) !important;
+  border-radius: var(--bevon-radius-md) !important;
 }
-
 .field__input:focus,
 .select__select:focus {
-  border-color: var(--bevon-gold) !important;
+  border-color: var(--bevon-accent) !important;
   outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  border-radius: var(--bevon-radius-pill) !important;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+}
+.badge--sale {
+  background-color: var(--bevon-danger) !important;
+  color: #fff !important;
+}
+.badge--limited {
+  background-color: var(--bevon-de-gold) !important;
+  color: var(--bevon-de-black) !important;
+}
+.badge--bestseller {
+  background-color: var(--bevon-accent) !important;
+  color: #fff !important;
+}
+
+/* =====================================================================
+   BEVON Custom Sections (Phase 2 — appended below as sections are built)
+   ===================================================================== */
+
+/* --- Hero --- */
+.bevon-hero {
+  position: relative;
+  background-color: var(--bevon-surface);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.bevon-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.bevon-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bevon-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.85) 100%);
+  z-index: 1;
+}
+.bevon-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--bevon-max-width);
+  margin: 0 auto;
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+  width: 100%;
+}
+.bevon-hero__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bevon-accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.bevon-hero__heading {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  margin-bottom: 24px;
+  max-width: 720px;
+}
+.bevon-hero__subheading {
+  font-size: 1.125rem;
+  color: var(--bevon-fg-muted);
+  margin-bottom: 32px;
+  max-width: 540px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.bevon-hero__urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(221, 0, 0, 0.08);
+  color: var(--bevon-danger);
+  padding: 8px 16px;
+  border-radius: var(--bevon-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 24px;
+}
+
+/* --- Featured product --- */
+.bevon-featured {
+  background: var(--bevon-bg);
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+}
+.bevon-featured__inner {
+  max-width: var(--bevon-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.bevon-featured__media {
+  border-radius: var(--bevon-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--bevon-shadow-lg);
+  aspect-ratio: 4/5;
+  background: var(--bevon-surface);
+}
+.bevon-featured__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bevon-featured__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bevon-accent);
+  font-weight: 700;
+}
+.bevon-featured__heading {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  margin: 16px 0;
+}
+.bevon-featured__price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--bevon-fg);
+  margin: 24px 0;
+}
+.bevon-featured__badges {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0 24px;
+  flex-wrap: wrap;
+}
+.bevon-featured__badge {
+  background: var(--bevon-surface);
+  color: var(--bevon-fg);
+  padding: 6px 14px;
+  border-radius: var(--bevon-radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--bevon-border);
+}
+
+/* --- Product grid (3-col) --- */
+.bevon-grid {
+  background: var(--bevon-surface-2);
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+}
+.bevon-grid__inner {
+  max-width: var(--bevon-max-width);
+  margin: 0 auto;
+}
+.bevon-grid__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.bevon-grid__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bevon-accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.bevon-grid__heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  margin: 0 0 12px;
+}
+.bevon-grid__sub {
+  color: var(--bevon-fg-muted);
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.bevon-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.bevon-grid__card {
+  background: var(--bevon-bg);
+  border: 1px solid var(--bevon-border);
+  border-radius: var(--bevon-radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow .25s, transform .25s, border-color .25s;
+  display: block;
+}
+.bevon-grid__card:hover {
+  border-color: var(--bevon-accent);
+  box-shadow: var(--bevon-shadow-lg);
+  transform: translateY(-4px);
+}
+.bevon-grid__image {
+  aspect-ratio: 4/5;
+  position: relative;
+  overflow: hidden;
+  background: var(--bevon-surface);
+}
+.bevon-grid__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.bevon-grid__card:hover .bevon-grid__image img { transform: scale(1.04); }
+.bevon-grid__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--bevon-fg);
+  color: var(--bevon-bg);
+  padding: 6px 12px;
+  border-radius: var(--bevon-radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.bevon-grid__body { padding: 20px; }
+.bevon-grid__title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--bevon-fg);
+  margin: 0 0 8px;
+}
+.bevon-grid__price {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--bevon-accent);
+  margin: 0 0 12px;
+}
+.bevon-grid__cta {
+  display: inline-block;
+  background: var(--bevon-accent);
+  color: var(--bevon-bg);
+  padding: 10px 18px;
+  border-radius: var(--bevon-radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+/* --- Trust bar --- */
+.bevon-trust {
+  background: var(--bevon-bg);
+  padding: 48px var(--bevon-section-pad-x);
+  border-top: 1px solid var(--bevon-border);
+  border-bottom: 1px solid var(--bevon-border);
+}
+.bevon-trust__grid {
+  max-width: var(--bevon-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.bevon-trust__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+.bevon-trust__icon {
+  width: 56px;
+  height: 56px;
+  background: var(--bevon-surface);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bevon-accent);
+}
+.bevon-trust__icon svg { width: 28px; height: 28px; }
+.bevon-trust__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: var(--bevon-fg);
+}
+.bevon-trust__desc {
+  font-size: 0.85rem;
+  color: var(--bevon-fg-muted);
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* --- Carousel --- */
+.bevon-carousel {
+  background: var(--bevon-bg);
+  padding: var(--bevon-section-pad-y) 0;
+  overflow: hidden;
+}
+.bevon-carousel__header {
+  max-width: var(--bevon-max-width);
+  margin: 0 auto 32px;
+  padding: 0 var(--bevon-section-pad-x);
+}
+.bevon-carousel__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--bevon-section-pad-x);
+  scrollbar-width: none;
+}
+.bevon-carousel__track::-webkit-scrollbar { display: none; }
+.bevon-carousel__item {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+}
+
+/* --- Collection grid --- */
+.bevon-collections {
+  background: var(--bevon-surface-2);
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+}
+.bevon-collections__inner { max-width: var(--bevon-max-width); margin: 0 auto; }
+.bevon-collections__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+.bevon-collections__card {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--bevon-radius-md);
+  overflow: hidden;
+  background: var(--bevon-bg);
+  border: 1px solid var(--bevon-border);
+  text-decoration: none;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+  display: block;
+}
+.bevon-collections__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--bevon-accent);
+  box-shadow: var(--bevon-shadow-lg);
+}
+.bevon-collections__image {
+  position: absolute; inset: 0;
+}
+.bevon-collections__image img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.bevon-collections__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+}
+.bevon-collections__number {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--bevon-bg);
+  color: var(--bevon-accent);
+  padding: 4px 10px;
+  border-radius: var(--bevon-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}
+.bevon-collections__title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  z-index: 2;
+}
+
+/* --- Lifestyle marquee (auto-scroll) --- */
+.bevon-marquee-images {
+  background: var(--bevon-bg);
+  padding: var(--bevon-section-pad-y) 0;
+  overflow: hidden;
+}
+.bevon-marquee-images__track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: bevon-scroll 40s linear infinite;
+}
+.bevon-marquee-images__track:hover { animation-play-state: paused; }
+.bevon-marquee-images__item {
+  flex: 0 0 auto;
+  width: 320px;
+  aspect-ratio: 4/5;
+  border-radius: var(--bevon-radius-md);
+  overflow: hidden;
+  background: var(--bevon-surface);
+}
+.bevon-marquee-images__item img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+@keyframes bevon-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --- Countdown --- */
+.bevon-countdown {
+  background: var(--bevon-fg);
+  color: var(--bevon-bg);
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+  text-align: center;
+}
+.bevon-countdown__heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--bevon-bg);
+  margin: 0 0 16px;
+}
+.bevon-countdown__sub {
+  color: rgba(255,255,255,0.7);
+  font-size: 1.05rem;
+  margin: 0 0 32px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.bevon-countdown__timer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.bevon-countdown__unit {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--bevon-radius-md);
+  padding: 16px 24px;
+  min-width: 90px;
+}
+.bevon-countdown__num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--bevon-bg);
+  display: block;
+  line-height: 1;
+}
+.bevon-countdown__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  margin-top: 6px;
+  display: block;
+}
+.bevon-countdown__cta {
+  display: inline-block;
+  background: var(--bevon-accent);
+  color: var(--bevon-bg);
+  padding: 16px 40px;
+  border-radius: var(--bevon-radius-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background .2s, transform .15s;
+}
+.bevon-countdown__cta:hover {
+  background: var(--bevon-accent-hover);
+  transform: translateY(-2px);
+}
+.bevon-countdown__trust {
+  margin-top: 20px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* --- Text ticker --- */
+.bevon-ticker {
+  background: var(--bevon-accent);
+  color: var(--bevon-bg);
+  padding: 14px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--bevon-accent-hover);
+  border-bottom: 1px solid var(--bevon-accent-hover);
+}
+.bevon-ticker__track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: bevon-scroll 30s linear infinite;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+.bevon-ticker__item { display: inline-flex; align-items: center; gap: 12px; }
+.bevon-ticker__sep { opacity: 0.5; }
+
+/* --- Newsletter --- */
+.bevon-newsletter {
+  background: var(--bevon-surface);
+  padding: var(--bevon-section-pad-y) var(--bevon-section-pad-x);
+  text-align: center;
+}
+.bevon-newsletter__inner { max-width: 720px; margin: 0 auto; }
+.bevon-newsletter__heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  margin: 0 0 12px;
+}
+.bevon-newsletter__sub {
+  color: var(--bevon-fg-muted);
+  margin: 0 0 32px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.bevon-newsletter__form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.bevon-newsletter__input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid var(--bevon-border);
+  border-radius: var(--bevon-radius-md);
+  font-size: 1rem;
+  background: var(--bevon-bg);
+}
+.bevon-newsletter__btn {
+  background: var(--bevon-accent);
+  color: var(--bevon-bg);
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--bevon-radius-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.bevon-newsletter__btn:hover { background: var(--bevon-accent-hover); }
+
+/* --- Footer (extends Dawn footer) --- */
+.bevon-footer-trust {
+  background: var(--bevon-bg);
+  border-top: 1px solid var(--bevon-border);
+  padding: 24px var(--bevon-section-pad-x);
+}
+.bevon-footer-trust__inner {
+  max-width: var(--bevon-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--bevon-fg-muted);
+}
+.bevon-footer-trust__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.bevon-footer-trust__item svg {
+  width: 18px;
+  height: 18px;
+  color: var(--bevon-accent);
+}
+
+/* =====================================================================
+   Responsive
+   ===================================================================== */
+@media (max-width: 990px) {
+  .bevon-featured__inner { grid-template-columns: 1fr; gap: 40px; }
+  .bevon-grid__cards { grid-template-columns: repeat(2, 1fr); }
+  .bevon-trust__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .bevon-collections__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --bevon-section-pad-y: 48px;
+    --bevon-section-pad-x: 16px;
+  }
+  .bevon-grid__cards { grid-template-columns: 1fr; }
+  .bevon-collections__grid { grid-template-columns: repeat(2, 1fr); }
+  .bevon-newsletter__form { flex-direction: column; }
+  .bevon-countdown__unit { padding: 12px 16px; min-width: 70px; }
+  .bevon-countdown__num { font-size: 2rem; }
 }
