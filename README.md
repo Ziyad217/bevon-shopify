@@ -1,99 +1,120 @@
-# Dawn
+# bevon — Premium Football Streetwear
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
+Custom Shopify theme for **bevon** — German football streetwear brand for the FIFA World Cup 2026.
 
-[Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[Code of conduct](#code-of-conduct) |
-[Theme Store submission](#theme-store-submission) |
-[License](#license)
+Built on the [Shopify Dawn](https://github.com/Shopify/dawn) theme baseline, customized with a light/clean/sporty design direction (white + sporty blue `#0066CC`).
 
-Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
+---
 
-* **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+## Brand identity
 
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
+- **Tagline:** Premium Football Streetwear — Designed in Deutschland
+- **Audience:** German football fans, 16–30, streetwear-affine
+- **Default language:** German (`de`)
+- **Currency:** EUR
 
-## Getting started
-We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+## Design tokens
 
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
+| Token | Value |
+|-------|-------|
+| Background | `#FFFFFF` |
+| Surface | `#F5F5F5` |
+| Foreground | `#1A1A1A` |
+| Accent (primary) | `#0066CC` |
+| Accent hover | `#0052A3` |
+| Border | `#E5E5E5` |
+| Heading font | Inter / Montserrat (uppercase, bold) |
+| Body font | Inter |
+| Border radius | 8px (md) |
 
-Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
+All tokens live in [`assets/bevon-custom.css`](assets/bevon-custom.css) under `:root`.
 
-## Staying up to date with Dawn changes
+## Custom homepage sections
 
-Say you're building a new theme off Dawn but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Dawn repository.
+The homepage (`templates/index.json`) is built from these custom bevon sections:
 
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
-```sh
-git remote -v
-```
-3. If you don't see an `upstream`, you can add one that points to Shopify's Dawn repository:
-```sh
-git remote add upstream https://github.com/Shopify/dawn.git
-```
-4. Pull in the latest Dawn changes into your repository:
-```sh
-git fetch upstream
-git pull upstream main
-```
+| Order | Section | File |
+|---|---|---|
+| 1 | Hero with CTA + urgency | [`sections/bevon-hero.liquid`](sections/bevon-hero.liquid) |
+| 2 | Featured bestseller spotlight | [`sections/bevon-featured-product.liquid`](sections/bevon-featured-product.liquid) |
+| 3 | "Meistgefragte Designs" 3-col grid | [`sections/bevon-product-grid.liquid`](sections/bevon-product-grid.liquid) |
+| 4 | Trust-Bar (4 icons) | [`sections/bevon-trust-bar.liquid`](sections/bevon-trust-bar.liquid) |
+| 5 | Horizontal product carousel | [`sections/bevon-product-carousel.liquid`](sections/bevon-product-carousel.liquid) |
+| 6 | "Premium Kollektionen" numbered grid | [`sections/bevon-collection-grid.liquid`](sections/bevon-collection-grid.liquid) |
+| 7 | "The New Season" auto-scroll marquee | [`sections/bevon-image-marquee.liquid`](sections/bevon-image-marquee.liquid) |
+| 8 | Countdown / urgency block | [`sections/bevon-countdown.liquid`](sections/bevon-countdown.liquid) |
+| 9 | Marquee text ticker | [`sections/bevon-text-ticker.liquid`](sections/bevon-text-ticker.liquid) |
+| 10 | Newsletter (Dawn extended) | `sections/newsletter.liquid` |
 
-## Developer tools
+Header, announcement bar, and footer are managed via Dawn's `header-group.json` and `footer-group.json`.
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Dawn is already set up to work with these tools.
+## Page templates
 
-### Shopify CLI
+Custom German page templates:
 
-[Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+- `templates/page.about.json` — Unsere Story
+- `templates/page.faq.json`
+- `templates/page.impressum.json`
+- `templates/page.datenschutz.json`
+- `templates/page.agb.json`
+- `templates/page.versand.json`
+- `templates/page.contact.json` *(Dawn default, kept)*
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+After installing the theme, create matching Pages in Shopify Admin → *Online Store → Pages → Add Page*. Set the Theme template dropdown to the matching custom template.
 
-### Theme Check
+---
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
+## Connect this repo to Shopify
 
-We've added Theme Check to Dawn's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Dawn.
+This repo is designed to be installed into Shopify via GitHub integration. Once connected, every push to `main` auto-syncs to the live theme.
 
-You can also run it from a terminal with the following Shopify CLI command:
+### One-time setup
+
+1. Open your Shopify Admin → **Online Store → Themes**.
+2. Click **Add theme → Connect from GitHub**.
+3. Authorize the Shopify app on GitHub if prompted.
+4. Select repository **`Ziyad217/bevon-shopify`**.
+5. Select branch **`main`**.
+6. Click **Connect**.
+
+The theme will appear in your theme library as "bevon-shopify". To go live, click **Actions → Publish**.
+
+### Working locally
 
 ```bash
+# Clone
+git clone https://github.com/Ziyad217/bevon-shopify.git
+cd bevon-shopify
+
+# Live preview against your dev store
+shopify theme dev --store <your-store>.myshopify.com
+
+# Validate before pushing
 shopify theme check
 ```
 
-### Continuous Integration
+### Sync flow
 
-Dawn uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/Shopify/dawn/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
+```
+local edit → git push origin main → Shopify auto-pulls within ~1 min
+```
 
-#### Shopify/lighthouse-ci-action
+If a push doesn't sync, check the connection in Shopify Admin → **Online Store → Themes → bevon-shopify → Edit code** (the "GitHub-managed" badge should be visible).
 
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
+---
 
-#### Shopify/theme-check-action
+## Assets to add
 
-Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
+The theme ships with placeholders for these assets — replace via Shopify Admin → *Online Store → Themes → Customize*:
 
-## Contributing
+- **Logo:** Header logo (recommended ~360×80px PNG with transparent bg)
+- **Hero image:** Section "bevon Hero" (recommended 2400×1200px)
+- **Featured bestseller image:** Auto-pulls from selected product
+- **Collection images:** Auto-pulls from each Collection's image (set via *Products → Collections → [collection]*)
+- **Lifestyle marquee images:** Section "bevon Lifestyle-Marquee" (recommended 800×1000px each)
 
-Want to make commerce better for everyone by contributing to Dawn? We'd love your help! Please read our [contributing guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build for Dawn.
+---
 
-## Code of conduct
+## Credits
 
-All developers who wish to contribute through code or issues, please first read our [Code of Conduct](https://github.com/Shopify/dawn/blob/main/.github/CODE_OF_CONDUCT.md).
-
-## Theme Store submission
-
-The [Shopify Theme Store](https://themes.shopify.com/) is the place where Shopify merchants find the themes that they'll use to showcase and support their business. As a theme partner, you can create themes for the Shopify Theme Store and reach an international audience of an ever-growing number of entrepreneurs.
-
-Ensure that you follow the list of [theme store requirements](https://shopify.dev/themes/store/requirements) if you're interested in becoming a [Shopify Theme Partner](https://themes.shopify.com/services/themes/guidelines) and building themes for the Shopify platform.
-
-## License
-
-Copyright (c) 2021-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+Built on [Shopify Dawn](https://github.com/Shopify/dawn) (MIT). Original Dawn license preserved in `LICENSE.md`.
