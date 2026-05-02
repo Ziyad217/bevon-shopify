@@ -1,0 +1,56 @@
+<section class="bevon-marquee-images color-{{ section.settings.color_scheme }}">
+  <div class="bevon-carousel__header" style="text-align:center;">
+    {% if section.settings.eyebrow != blank %}
+      <p class="bevon-grid__eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+      <h2 class="bevon-grid__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+  </div>
+
+  <div class="bevon-marquee-images__track">
+    {% comment %} Render twice for seamless loop {% endcomment %}
+    {% for cycle in (1..2) %}
+      {% for block in section.blocks %}
+        <div class="bevon-marquee-images__item" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.alt | default: 'bevon Lifestyle', sizes: '320px', widths: '320, 640' }}
+          {% else %}
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;background:var(--bevon-surface);font-size:.85rem;">Lifestyle-Bild</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "bevon Lifestyle-Marquee",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Farbschema", "default": "scheme-1" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "COLLECTION" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "THE NEW SEASON" }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Bild",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Bild" },
+        { "type": "text", "id": "alt", "label": "Alt-Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bevon Lifestyle-Marquee",
+      "blocks": [
+        { "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

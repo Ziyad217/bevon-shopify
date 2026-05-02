@@ -1,0 +1,74 @@
+<section class="bevon-collections color-{{ section.settings.color_scheme }}">
+  <div class="bevon-collections__inner">
+    <div class="bevon-grid__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="bevon-grid__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class="bevon-grid__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="bevon-grid__sub">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="bevon-collections__grid">
+      {% for block in section.blocks %}
+        {%- assign coll = collections[block.settings.collection] -%}
+        <a href="{% if coll != blank %}{{ coll.url }}{% else %}{{ block.settings.fallback_link | default: '#' }}{% endif %}"
+           class="bevon-collections__card" {{ block.shopify_attributes }}>
+          <span class="bevon-collections__number">{{ forloop.index0 | plus: 1 | prepend: '0' | slice: -2, 2 }}</span>
+          <div class="bevon-collections__image">
+            {% if coll != blank and coll.image %}
+              {{ coll.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: coll.title, sizes: '(min-width: 990px) 20vw, 50vw', widths: '300, 500, 800' }}
+            {% elsif block.settings.image %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {% else %}
+              <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#bbb;background:var(--bevon-surface);">{{ block.settings.title | default: 'Kollektion' }}</div>
+            {% endif %}
+          </div>
+          <div class="bevon-collections__overlay"></div>
+          <h3 class="bevon-collections__title">{{ block.settings.title | default: coll.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "bevon Kollektionen",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Farbschema", "default": "scheme-2" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "KATEGORIEN" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "PREMIUM KOLLEKTIONEN" },
+    { "type": "text", "id": "subheading", "label": "Untertitel", "default": "Entdecke unsere exklusiven Kategorien" }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Kollektion",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Kollektion" },
+        { "type": "image_picker", "id": "image", "label": "Fallback-Bild" },
+        { "type": "text", "id": "title", "label": "Titel-Override" },
+        { "type": "url", "id": "fallback_link", "label": "Fallback-Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bevon Kollektionen",
+      "blocks": [
+        { "type": "collection_card", "settings": { "title": "T-Shirts" } },
+        { "type": "collection_card", "settings": { "title": "Oversized T-Shirts" } },
+        { "type": "collection_card", "settings": { "title": "Hoodies" } },
+        { "type": "collection_card", "settings": { "title": "Caps" } },
+        { "type": "collection_card", "settings": { "title": "WM 2026 Collection" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

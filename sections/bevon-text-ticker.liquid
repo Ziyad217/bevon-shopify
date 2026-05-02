@@ -1,0 +1,42 @@
+<section class="bevon-ticker">
+  <div class="bevon-ticker__track">
+    {% for cycle in (1..2) %}
+      {% for block in section.blocks %}
+        <span class="bevon-ticker__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        <span class="bevon-ticker__sep">◆</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "bevon Text-Ticker",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "ticker_item",
+      "name": "Ticker-Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Limitierte Drops" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "bevon Text-Ticker",
+      "blocks": [
+        { "type": "ticker_item", "settings": { "text": "Limitierte Drops" } },
+        { "type": "ticker_item", "settings": { "text": "Kein Restock" } },
+        { "type": "ticker_item", "settings": { "text": "Premium Qualität" } },
+        { "type": "ticker_item", "settings": { "text": "Kostenloser Versand ab 50€" } },
+        { "type": "ticker_item", "settings": { "text": "WM 2026 Collection" } },
+        { "type": "ticker_item", "settings": { "text": "Designed in Deutschland" } },
+        { "type": "ticker_item", "settings": { "text": "30 Tage Rückgabe" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

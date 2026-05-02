@@ -1,0 +1,60 @@
+{{ 'bevon-custom.css' | asset_url | stylesheet_tag }}
+
+<section class="bevon-hero color-{{ section.settings.color_scheme }}">
+  {% if section.settings.image %}
+    <div class="bevon-hero__media">
+      {{ section.settings.image | image_url: width: 2400 | image_tag:
+        loading: 'eager',
+        sizes: '100vw',
+        widths: '600, 900, 1200, 1600, 2000, 2400',
+        alt: section.settings.image.alt | default: section.settings.heading
+      }}
+      <div class="bevon-hero__overlay"></div>
+    </div>
+  {% endif %}
+
+  <div class="bevon-hero__content">
+    {% if section.settings.eyebrow != blank %}
+      <span class="bevon-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="bevon-hero__heading">{{ section.settings.heading }}</h1>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="bevon-hero__subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="button button--primary">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+
+    {% if section.settings.urgency_text != blank %}
+      <div class="bevon-hero__urgency">
+        <span>⚠️</span> {{ section.settings.urgency_text }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "bevon Hero",
+  "tag": "section",
+  "class": "bevon-section-hero",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Farbschema", "default": "scheme-2" },
+    { "type": "image_picker", "id": "image", "label": "Hintergrundbild" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "COLLECTION 01 — LIMITED WM 2026 DROP" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "WM 2026" },
+    { "type": "textarea", "id": "subheading", "label": "Untertitel", "default": "Für echte Fans. Limitiert produziert. Kein Restock." },
+    { "type": "text", "id": "button_label", "label": "Button-Text", "default": "DROP SICHERN" },
+    { "type": "url", "id": "button_link", "label": "Button-Link" },
+    { "type": "text", "id": "urgency_text", "label": "Urgency-Hinweis", "default": "Nur noch wenige verfügbar" }
+  ],
+  "presets": [{ "name": "bevon Hero" }]
+}
+{% endschema %}

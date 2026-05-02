@@ -1,0 +1,76 @@
+<section class="bevon-featured color-{{ section.settings.color_scheme }}">
+  <div class="bevon-featured__inner">
+    {%- assign product = all_products[section.settings.product] -%}
+    <div class="bevon-featured__media">
+      {% if product != blank and product.featured_image %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 990px) 50vw, 100vw',
+          widths: '400, 600, 800, 1200',
+          alt: product.featured_image.alt | default: product.title
+        }}
+      {% elsif section.settings.fallback_image %}
+        {{ section.settings.fallback_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+      {% else %}
+        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;">
+          <span>{{ 'general.placeholder.image' | t | default: 'Produktbild' }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="bevon-featured__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="bevon-featured__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      <h2 class="bevon-featured__heading">{{ section.settings.heading | default: product.title }}</h2>
+
+      {% if section.settings.subheading != blank %}
+        <p style="color:var(--bevon-fg-muted);font-size:1.1rem;text-transform:none;letter-spacing:0;font-weight:400;margin:0 0 16px;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      <div class="bevon-featured__badges">
+        {% if section.settings.badge_1 != blank %}<span class="bevon-featured__badge">🔥 {{ section.settings.badge_1 }}</span>{% endif %}
+        {% if section.settings.badge_2 != blank %}<span class="bevon-featured__badge">⚠️ {{ section.settings.badge_2 }}</span>{% endif %}
+      </div>
+
+      {% if section.settings.description != blank %}
+        <div style="color:var(--bevon-fg-muted);font-size:1rem;line-height:1.6;text-transform:none;letter-spacing:0;font-weight:400;">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if product != blank %}
+        <p class="bevon-featured__price">{{ product.price | money }}</p>
+        <a href="{{ product.url }}" class="button button--primary">{{ section.settings.button_label | default: 'Jetzt sichern' }}</a>
+      {% else %}
+        <p class="bevon-featured__price">{{ section.settings.fallback_price | default: '€34,99' }}</p>
+        <a href="{{ section.settings.fallback_link | default: '#' }}" class="button button--primary">{{ section.settings.button_label | default: 'Jetzt sichern' }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "bevon Bestseller",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Farbschema", "default": "scheme-1" },
+    { "type": "product", "id": "product", "label": "Produkt" },
+    { "type": "image_picker", "id": "fallback_image", "label": "Fallback-Bild (wenn kein Produkt)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "BESTSELLER DER COMMUNITY" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "DEIN WM 2026 STATEMENT" },
+    { "type": "text", "id": "subheading", "label": "Untertitel", "default": "Für echte Fans. Für den Moment. Kein Restock." },
+    { "type": "richtext", "id": "description", "label": "Beschreibung", "default": "<p>Ein Statement für echte Fans. Limitiert produziert, stark im Auftritt und gemacht für den Moment, den man nicht wiederholen kann.</p>" },
+    { "type": "text", "id": "badge_1", "label": "Badge 1", "default": "Bestseller" },
+    { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "Nur noch wenige verfügbar" },
+    { "type": "text", "id": "button_label", "label": "Button-Text", "default": "JETZT SICHERN" },
+    { "type": "text", "id": "fallback_price", "label": "Fallback-Preis", "default": "€34,99" },
+    { "type": "url", "id": "fallback_link", "label": "Fallback-Link" }
+  ],
+  "presets": [{ "name": "bevon Bestseller" }]
+}
+{% endschema %}
